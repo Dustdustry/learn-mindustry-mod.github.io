@@ -34,7 +34,7 @@ const viteConfig: UserConfig = {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Java", link: "/java" },
-      { text: "JavaScript", link: "/JavaScripts" },
+      { text: "JavaScript", link: "/Javascript" },
       { text: "Json", link: "/json" },
       { text: "贴图", link: "/sprite" },
     ],

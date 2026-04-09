@@ -102,6 +102,8 @@ const biomassSteel = new Item("biomass-steel",Color.valueOf("4e342e"));
 对于具体的内容我们习惯上使用小写字母开头的驼峰命名法,比如 `protein`,`biomassSteel` 等,
 而对于你自己构造的函数我们习惯上使用大写字母开头的驼峰命名法,比如 `Block`, `UnitType`, `DrawPart` 等。
 
+理论上来说,中文是可以作为变量名的,不过如果你用中文变量名,你可能需要频繁切换输入法.
+
 ### 运算符
 
 - **算术运算符**: `+`, `-`, `*`, `/`, `%` 等。例如:
