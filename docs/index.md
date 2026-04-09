@@ -15,6 +15,9 @@ hero:
         text: Java/Kotlin教程
         link: /java/index
       - theme: brand
+        text: JavaScript教程
+        link: /JavaScripts/index
+      - theme: brand
         text: Json教程
         link: /json/index
       - theme: brand

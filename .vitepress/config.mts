@@ -34,6 +34,7 @@ const viteConfig: UserConfig = {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Java", link: "/java" },
+      { text: "JavaScript", link: "/JavaScripts" },
       { text: "Json", link: "/json" },
       { text: "贴图", link: "/sprite" },
     ],
@@ -65,5 +66,7 @@ export default defineConfig(withSidebar(viteConfig,
   [
     generateNav("java"),
     generateNav("json"),
+    generateNav("JavaScripts"),
+    generateNav("sprite"),
   ])
 )

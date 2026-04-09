@@ -826,7 +826,8 @@ override fun setStats() {
 
 ::: code-group
 
-``` javapackage example.world.blocks;
+``` java
+package example.world.blocks;
 
 import arc.*;
 import arc.graphics.*;
