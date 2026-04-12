@@ -16,7 +16,7 @@ hero:
         link: /java/index
       - theme: brand
         text: JavaScript教程
-        link: /JavaScripts/index
+        link: /Javascript/index
       - theme: brand
         text: Json教程
         link: /json/index
