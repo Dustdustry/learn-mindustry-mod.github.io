@@ -4,7 +4,7 @@
 
 ## main.js文件和require函数
 
-在mdt中,js文件需要放在`scripts/`目录下,这个目录与json的`content/`目录同级,mdt只会识别和加载你的`main.js`文件,理论上你可以在这个文件中编写所有的代码,但我不建议这样做.
+在mdt中,js文件需要放在`scripts/`目录下,这个目录与json的`content/`目录同级,mdt只会识别和加载你的`main.js`文件,理论上你可以在这个文件中编写所有的代码,但一般不建议这样做.
 你也可以在`scripts/`目录下创建其他的js文件来组织你的代码,但这些文件需要在`main.js`中通过`require()`函数引入才能使用。
 
 ```javascript
@@ -67,7 +67,7 @@ exports.biomassSteel = new Item("biomass-steel", Color.valueOf("7EA341"));
 
 ```
 
-这种写法虽然更简洁,但这样就无法在声明变量后对它进行修改了,也无法在同一个文件中使用,所以我更推荐第一种写法.
+这种写法虽然更简洁,但这样就无法在声明变量后对它进行修改,也无法在同一个文件中直接使用,因此通常更推荐先声明再导出的写法.
 
 ## Object.assign()方法
 
@@ -87,9 +87,7 @@ Object.assign(biomassSteel, {
 })
 ```
 
-给物品添加属性时,效率差距可能不大,但如果你需要给一个对象添加很多属性和方法,使用Object.assign()就可以大大减少代码量,尤其是你想修改一个已经声明的对象的变量名时,使用Object.assign()就可以避免重复写对象名,让代码更简洁.
-
-因此,对于Object.assign()方法,我们直接给到夯完了,王中王,不接受任何反驳.
+给物品添加属性时,效率差距可能不大,但如果你需要给一个对象添加很多属性和方法,使用Object.assign()可以减少代码量,避免重复写对象名,让代码更简洁。
 
 ## extend()函数
 
@@ -184,8 +182,8 @@ public ShieldRegenFieldAbility(float amount, float max, float reload, float rang
 
 ```javascript
 
-//我推荐你使用下面的写法,这样可以让代码更清晰,也更容易修改参数.
-//毕竟ShieldRegenFieldAbility的参数比较多,还都是float类型,我猜除了上帝没有人能记住每个参数的顺序和含义.
+//下面的写法更清晰,也更容易修改参数。
+//ShieldRegenFieldAbility的参数较多,使用对象字面量可以减少对参数顺序的记忆负担。
 const shieldRegenField = extend(ShieldRegenFieldAbility,{
     amount: 0.8,
     max: 20,
@@ -198,6 +196,6 @@ const shieldRegenField = extend(ShieldRegenFieldAbility,{
 ## 小结
 
 在mdt环境下编写js时,我们需要注意一些特殊的语法和环境相关的知识.我们需要使用exports对象来导出变量和方法,使用require()函数来引入其他脚本文件,使用Object.assign()方法来给对象添加属性和方法,使用extend()函数来创建新的对象并继承已有的对象.掌握这些知识可以帮助你更好地编写mdt模组,让你的代码更清晰、更简洁、更高效.
-从下一节开始,我将带你拆解一个简单的但是非常有参考价值的js模组,顺带介绍一些mdt中常用的全局对象和函数.
+从下一节开始,将拆解一个简单的js模组,并介绍一些mdt中常用的全局对象和函数。
 
-课后练习: 以js语言写一个简单的模组,至少包含一个物品和一个方块,并且方块要使用你新建的物品作为建造材料.记得提交你的作业,否则学分不予以发放,你就等着被退学吧.（开玩笑的,但真的欢迎你来群里交流讨论你的作业,我会尽力解答你的问题的.）
+课后练习: 以js语言写一个简单的模组,至少包含一个物品和一个方块,并且方块要使用你新建的物品作为建造材料。欢迎在群里交流讨论作业,也欢迎提问讨论,我会尽力解答。
