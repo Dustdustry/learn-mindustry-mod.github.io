@@ -66,7 +66,7 @@ export default defineConfig(withSidebar(viteConfig,
   [
     generateNav("java"),
     generateNav("json"),
-    generateNav("JavaScripts"),
+    generateNav("Javascript"),
     generateNav("sprite"),
   ])
 )
