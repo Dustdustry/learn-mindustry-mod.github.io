@@ -83,6 +83,6 @@ StatusEffects.burning.init(()=>{
 
 从 0x01 的初识 `mod.json`，到亲自配置方块、子弹、特效，再到 0x09 学会主动去 GitHub 翻阅原版源码，你已经具备了一个优秀 JSON 架构师的所有素养，完全有能力独立撑起一个中大型模组的内容填充。
 
-如果你渴望突破数据的桎梏，想要在编译器中敲下属于自己的 `public class MyBlackholeTurret extends Turret`，去创造前所未有的物理法则，请移步本站的 **[Java 模组开发教程目录](../java/0-introduction/index.md)**。
+如果你渴望突破数据的桎梏，想要在编译器中敲下属于自己的 `public class MyBlackholeTurret extends Turret`，去创造前所未有的物理法则，请移步本站的 **[Java 模组开发教程目录](../../java/index.md)**。
 
 感谢你的阅读与实践。星辰大海，我们 Java 见！
