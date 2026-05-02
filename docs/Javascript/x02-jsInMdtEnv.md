@@ -193,6 +193,34 @@ const shieldRegenField = extend(ShieldRegenFieldAbility,{
 
 ```
 
+## 解构
+
+解构是JavaScript中的一个语法特性,它可以让我们从数组或者对象中提取值,并将它们赋值给变量.在mdt中,解构也非常常用,因为它可以让我们更方便地获取某些对象的属性或者方法.例如:
+
+```javascript
+
+const {
+    MultiCrafter, DrawRecipe, IOEntry, Recipe
+} = require("vne/lib/multi-crafter")
+
+```
+
+在上面的例子中,我们使用解构从`vne/lib/multi-crafter`模块中提取了MultiCrafter、DrawRecipe、IOEntry和Recipe这几个对象,并将它们赋值给了同名的变量.这样我们就可以直接使用这些变量来创建新的对象或者调用它们的方法了,而如果不使用解构,我们就需要写成下面的样子:
+
+```javascript
+
+const multiCrafter = require("vne/lib/multi-crafter");
+const MultiCrafter = multiCrafter.MultiCrafter;
+const DrawRecipe = multiCrafter.DrawRecipe;
+const IOEntry = multiCrafter.IOEntry;
+const Recipe = multiCrafter.Recipe;
+
+//或者调用的时候写multiCrafter.MultiCrafter,multiCrafter.DrawRecipe等等
+
+```
+
+不过解构有时也可能会让代码变得不太清晰,尤其是当你从一个模块中提取了很多对象的时候,这时候你就需要权衡一下是否使用解构了.
+
 ## 小结
 
 在mdt环境下编写js时,我们需要注意一些特殊的语法和环境相关的知识.我们需要使用exports对象来导出变量和方法,使用require()函数来引入其他脚本文件,使用Object.assign()方法来给对象添加属性和方法,使用extend()函数来创建新的对象并继承已有的对象.掌握这些知识可以帮助你更好地编写mdt模组,让你的代码更清晰、更简洁、更高效.
