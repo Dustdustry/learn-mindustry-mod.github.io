@@ -99,6 +99,8 @@ block.tutorial-mod-tutorial-crafter.details = Without factory you cannot spell "
 
 Anuke已经封装好了常用的消耗器的声明，这些方法的功能正如其字面义：
 
+::: code-group
+
 ``` java
 //每次生产消耗1个铜
 consumeItem(Items.copper,1);
@@ -111,6 +113,22 @@ consumeLiquids(LiquidStack.with(Liquids.water,1f,Liquids.slag,2f));
 //生产时每刻消耗1单位电力
 consumePower(1f);
 ```
+
+``` kotlin
+//每次生产消耗1个铜
+consumeItem(Items.copper,1);
+//每次生产消耗1个铜和2个铅
+consumeItems(*ItemStack.with(Items.copper,1,Items.lead,2));
+//生产时每“刻”（见下）消耗1单位水
+consumeLiquid(Liquids.water,1f);
+//生产时每刻消耗1单位水和2单位矿渣
+consumeLiquids(*LiquidStack.with(Liquids.water,1f,Liquids.slag,2f));
+//生产时每刻消耗1单位电力
+consumePower(1f);
+```
+
+:::
+
 
 值得注意的是，流体和电量的消耗都是以 **刻（Tick）** 为单位的，而`1s = 60tick`，例如，`consumePower(60f)`实际上每秒消耗3600电力。因此，应当注意此处的单位换算问题，避免出现消耗速率意外扩大60倍的问题。
 
@@ -141,10 +159,10 @@ outputItem = new ItemStack(Items.copper, 1);
 outputItems = ItemStack.with(Items.copper, 1, ModItems.item1 ,2);
 
 //生产时每刻输出1单位水和2单位矿渣
-outputLiquids = new LiquidStack(Liquids.water, 1f);
+outputLiquid = new LiquidStack(Liquids.water, 1f);
 //或
 //生产时每刻输出1单位水和1单位本模组流体
-outputItem = LiquidStack.with(Liquids.water, 1f, ModItems.liquid1, 2f);
+outputLiquids = LiquidStack.with(Liquids.water, 1f, ModItems.liquid1, 2f);
 
 //同时设置`outputItem`和`outputItems`会无视`outputItem`，流体同理。
 ```

@@ -34,13 +34,13 @@
 `mod.hjson`是模组的配置文件，其中包含了模组的基本信息：
 
 ``` hjson
-displayName: "示例模组"
-name: "turorial-mod"
-author: "LEARN-MINDUSTRY-MOD"
-main: "turorial.TurorialMod"
-description: "A Mindustry mod for tutorial."
+displayName: "Tutorial Multi-Language Mod"
+name: "tutorial-multi-language-mod"
+author: "Learn Mindustry Mod"
+main: "tutorial.java.TutorialJavaMod"
+description: "A Mindustry mod template split into Java, Kotlin, and Scala subprojects.\n See more at learn-mindustry-mod.github.io"
 version: 1.0
-minGameVersion: 154
+minGameVersion: 157
 java: true
 ```
 

@@ -22,15 +22,8 @@ new Item("tutorial-item", Color.red);
 Item("tutorial-item", Color.red)
 ```
 
-``` javascript
-const tutorialItem = extend(Item, "tutorial-item", Color.red, {})
-```
-
-```json
-// content/items.tutorial-item.json
-{
-  
-}
+``` scala
+new Item("tutorial-item", Color.red)
 ```
 
 :::
@@ -41,19 +34,27 @@ const tutorialItem = extend(Item, "tutorial-item", Color.red, {})
 
 ::: code-group
 
-``` java TurorialMod.java
-public class TutorialMod extends Mod{
+``` java
+public class TutorialJavaMod extends Mod{
   @Override
   public void loadContent(){
-    new Item("tutorial-item", Color.red);
+    new Item("tutorial-java-item1", Color.red);
   }
 }
 ```
 
-``` kotlin TutorialMod.kt
-class TutorialMod: Mod(){
+``` kotlin 
+class TutorialKotlinMod: Mod(){
   override fun loadContent(){
-    Item("tutorial-item", Color.red)
+    Item("tutorial-kotlin-item1", Color.red)
+  }
+}
+```
+
+``` scala
+class TutorialScalaMod extends Mod {
+  override def loadContent(): Unit = {
+    new Item("tutorial-scala-item1", Color.red)
   }
 }
 ```
@@ -135,7 +136,7 @@ item.tutorial-mod-tutorial-item.details = Shhhhhh
 ::: code-group
 
 ``` java
-new Item("tutorial-item"){{
+new Item("tutorial-java-item2"){{
   hardness = 3;
   explosiveness = 0f;
   flammability = 0f;
@@ -145,13 +146,22 @@ new Item("tutorial-item"){{
 ```
 
 ``` kotlin
-Item("tutorial-item").apply{
+Item("tutorial-kotlin-item2").apply{
   hardness = 3
   explosiveness = 0f
   flammability = 0f
   radioactivity = 0.4f
   cost = 1.25f
 }
+```
+
+``` scala
+new Item("tutorial-scala-item2"):
+  hardness = 3;
+  explosiveness = 0f;
+  flammability = 0f;
+  radioactivity = 0.4f;
+  cost = 1.25f;
 ```
 
 :::
@@ -177,11 +187,15 @@ Item("tutorial-item").apply{
 ::: code-group
 
 ``` java
-new Liquid("tutorial-liquid", Color.blue);
+new Liquid("tutorial-java-liquid1", Color.blue);
 ```
 
 ``` kotlin
-Liquid("tutorial-liquid", Color.blue)
+Liquid("tutorial-kotlin-liquid1", Color.blue)
+```
+
+``` scala
+new Liquid("tutorial-scala-liquid1", Color.blue)
 ```
 
 :::
@@ -235,34 +249,34 @@ liquid.tutorial-mod-tutorial-liquid.details = And God said, "Let there be an exp
 
 ::: code-group
 
-``` java ModItems.java
-public class ModItems{
-  public static Item item1, 
-      item2, 
-      item3, 
-      item4,
-      //...
-      itemN;
-  
-  public static void load(){
-    item1 = new Item("item1"){{
-      //...
-    }};
-    item2 = new Item("item2"){{
-      //...
-    }};
-    item3 = new Item("item3"){{
-      //...
-    }};
-    item4 = new Item("item4"){{
-      //...
-    }};
+``` java JavaModItems.java
+public class JavaModItems {
+    public static Item item1,
+            item2,
+            item3,
+            item4,
     //...
-  }
+    itemN;
+
+    public static void load(){
+        item1 = new Item("item1"){{
+            //...
+        }};
+        item2 = new Item("item2"){{
+            //...
+        }};
+        item3 = new Item("item3"){{
+            //...
+        }};
+        item4 = new Item("item4"){{
+            //...
+        }};
+        //...
+    }
 }
 ```
 
-``` kotlin ModItems.kt
+``` kotlin KotlinModItems.kt
 object ModItems{
   lateinit var item1
   lateinit var item2
@@ -289,6 +303,33 @@ object ModItems{
 }
 ```
 
+``` scala ScalaModItems.scala
+object ScalaModItems {
+    var item1: Item = null
+    var item2: Item = null
+    var item3: Item = null
+    var item4: Item = null
+    //...
+    var itemN: Item = null
+
+    def load(): Unit = {
+      item1 = new Item("item1") {
+        //...
+      }
+      item2 = new Item("item2") {
+        //...
+      }
+      item3 = new Item("item3") {
+        //...
+      }
+      item4 = new Item("item4") {
+        //...
+      }
+      //...
+    }
+}
+```
+
 :::
 
 ModLiquids类也类似。
@@ -297,21 +338,30 @@ ModLiquids类也类似。
 
 ::: code-group
 
-``` java TutorialMod.java
-public class TutorialMod extends Mod{
+``` java TutorialJavaMod.java
+public class TutorialJavaMod extends Mod{
   @Override
   public void loadContent(){
-    ModItems.load();
-    ModLiquids.load();
+    JavaModItems.load();
+    JavaModLiquids.load();
   }
 }
 ```
 
-``` kotlin TutorialMod.kt
-class TutorialMod: Mod(){
+``` kotlin TutorialKotlinMod.kt
+class TutorialKotlinMod: Mod(){
   override fun loadContent(){
-    ModItems.load()
-    ModLiquids.load()
+    KotlinModItems.load()
+    KotlinModLiquids.load()
+  }
+}
+```
+
+``` scala TutorialScalaMod.kt
+class TutorialKotlinMod: Mod(){
+  override fun loadContent(){
+    ScalaModItems.load()
+    ScalaModLiquids.load()
   }
 }
 ```
