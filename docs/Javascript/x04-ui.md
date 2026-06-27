@@ -288,9 +288,9 @@ Events.on(ClientLoadEvent, (e) => {
 
 <GridText>
 
-这不是必须的。因为添加表格元素的函数有很多种，而它们的第一个参数类型各不相同。
+**这不是必须的。**
 
-如果你写：
+如果你省去 `null`：
 
 ```js
 dialog.cont.table((table) => {})
@@ -298,20 +298,20 @@ dialog.cont.table((table) => {})
 
 你会发现游戏会报错：<ImageItem height=200 src="./imgs/table-param-1-error.png" caption="报错" />
 
-这是因为 JS 引擎会尝试去匹配同名函数，上面的写法第一个参数类型是`Function`，引擎无法区分开 `table(Cons)` 和 `table(Drawable)` 函数。如果要写成单参数，正确的写法如下：
+这是因为添加表格元素的函数有很多种，而它们的参数类型各不相同。JS 引擎会尝试根据你传入的类型，去匹配同名函数，上面的写法第一个参数类型是`Function`，引擎无法根据 `Function` 区分开 `table(Cons)` 和 `table(Drawable)` 函数。如果要写成单参数，正确的写法如下：
 
 ```js
 dialog.cont.table(cons((table) => {}))
 ```
 
-这种写法会显得很啰嗦，容易漏掉一对小括号，或者漏掉大括号，不太推荐。
+但这种写法会显得很啰嗦，而且容易漏掉一对小括号，或者漏掉大括号，不推荐。
 
 </GridText>
 
 <ImageItem height=150 src="./imgs/table-param-1.png" caption="添加表格的所有函数" />
 
 2. `table.add` 和 `table.image` 函数的返回值是什么，为什么调用返回值`pad`函数就能调整间距?
-   - 这将在下一章 **表格布局(Table Layout)** 深入讲解。
+   - 这将在下一章 **表格布局(Table Layout)** 里深入讲解。
 
 # Cell - 表格布局
 
