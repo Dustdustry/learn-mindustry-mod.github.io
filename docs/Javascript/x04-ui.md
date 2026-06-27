@@ -97,13 +97,54 @@ Events.on(ClientLoadEvent, (e) => {
 
 ---
 
-# Label & Button - 添加文本、按钮
+# Label & Image - 添加文本、图片
 
-> 施工中...
+现在，我们进一步添加新的内容：
 
-# Image - 图像世界
+```js
+Events.on(ClientLoadEvent, (e) => {
+  const dialog = new BaseDialog("My First Page")
+  dialog.cont.add("Welcome to my first page!")
+  dialog.cont.add("Mono is mining") // [!code ++]
+  dialog.cont.image(Items.copper.uiIcon) // [!code ++]
+  dialog.addCloseButton()
+  dialog.show()
+})
+```
 
-> 施工中...
+1. 调用 `add`，添加新文本
+2. 调用 `image`，并传入图片，添加**图片(Image)**
+
+这样，我们的页面就新增了文本和图片：
+<ImageItem src="./imgs/text-image.png" caption="新增文本和图片" />
+
+图片的来源非常广泛，在我们的代码里，通过 `Items.copper.uiIcon` 获取到了铜的图标。
+
+任何`UnlockableContent`都有`uiIcon`的图标字段，因此你也可以试着把铜改成单位、建筑、液体等，来获取它们的图标。
+
+除了获取内容的图标，你还可以获取游戏内的其他图标，这些图标都被放在了编译时生成的类`Icon`中。你可以在 LMM 群文件找到 `Icon` 文件。
+
+接下来我们就引入更多图片开源：
+
+```js
+Events.on(ClientLoadEvent, (e) => {
+  const dialog = new BaseDialog("My First Page")
+  dialog.cont.add("Welcome to my first page!")
+  dialog.cont.add("Mono is mining")
+  dialog.cont.image(Items.copper.uiIcon)
+
+  dialog.cont.image(UnitTypes.flare.uiIcon) // [!code ++]
+  dialog.cont.image(Blocks.duo.uiIcon) // [!code ++]
+  dialog.cont.image(Liquids.water.uiIcon) // [!code ++]
+  dialog.cont.image(Icon.upload) // [!code ++]
+  dialog.cont.image(Icon.cancel) // [!code ++]
+
+  dialog.addCloseButton()
+  dialog.show()
+})
+```
+
+<ImageItem src="./imgs/more-image.png" caption="新增更多图片!" />
 
 # Table - 初识表格
 
