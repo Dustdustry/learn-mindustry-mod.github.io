@@ -97,7 +97,7 @@ Events.on(ClientLoadEvent, (e) => {
 
 ---
 
-# Label & Image - 添加文本、图片
+# Label & Image - 初识文本、图片
 
 现在，我们进一步添加新的内容：
 
@@ -120,9 +120,11 @@ Events.on(ClientLoadEvent, (e) => {
 
 图片的来源非常广泛，在我们的代码里，通过 `Items.copper.uiIcon` 获取到了铜的图标。
 
-任何`UnlockableContent`都有`uiIcon`的图标字段，因此你也可以试着把铜改成单位、建筑、液体等，来获取它们的图标。
+- 任何`UnlockableContent`都有`uiIcon`的图标字段，因此你也可以试着把铜改成单位、建筑、液体等，来获取它们的图标。
 
-除了获取内容的图标，你还可以获取游戏内的其他图标，这些图标都被放在了编译时生成的类`Icon`中。你可以在 LMM 群文件找到 `Icon` 文件。
+- 除了获取内容的图标，你还可以获取游戏内的其他图标，这些图标都被放在了编译时生成的类`Icon`中。你可以在 LMM 群文件找到 `Icon` 文件。
+
+- 当然你还可以添加自己模组的图片，这里我们先不演示，后续深入时再演示。
 
 接下来我们就引入更多图片开源：
 
@@ -148,8 +150,173 @@ Events.on(ClientLoadEvent, (e) => {
 
 # Table - 初识表格
 
-> 施工中...
+目前，我们的 **UI元素(Element)** 还只能在一行摆放，如果希望实现换行，调整元素大小、间距，我们就必须引入一些专门用于 **布局(Layout)** 的元素。
+
+在 Mindustry 的UI引擎里，最常用的布局元素就是 **表格(Table)**，相对应的布局方式就是 **表格布局(Table Layout)**。
+
+- 我们先修改一下代码，给页面添加一个表格，再把图片元素放到表格内：
+
+```js
+Events.on(ClientLoadEvent, (e) => {
+  const dialog = new BaseDialog("My First Page")
+  dialog.cont.add("Welcome to my first page!")
+  dialog.cont.add("Mono is mining")
+  dialog.cont.image(Items.copper.uiIcon)
+
+  // [!code --:5]
+  dialog.cont.image(UnitTypes.flare.uiIcon)
+  dialog.cont.image(Blocks.duo.uiIcon)
+  dialog.cont.image(Liquids.water.uiIcon)
+  dialog.cont.image(Icon.upload)
+  dialog.cont.image(Icon.cancel)
+
+  // [!code ++:7]
+  dialog.cont.table(null, (table) => {
+    table.image(UnitTypes.flare.uiIcon)
+    table.image(Blocks.duo.uiIcon)
+    table.image(Liquids.water.uiIcon)
+    table.image(Icon.upload)
+    table.image(Icon.cancel)
+  })
+
+  dialog.addCloseButton()
+  dialog.show()
+})
+```
+
+页面上的图标 **间距(Padding)** 变紧凑了，而且似乎没有其他变化。
+
+<ImageGrid cols="2" gap=40>
+    <ImageItem src="./imgs/more-image.png" caption="修改前" />
+    <ImageItem src="./imgs/table-1.png" caption="修改后" />
+</ImageGrid>
+
+- 那么继续修改代码，把间距加回来：
+
+```js
+Events.on(ClientLoadEvent, (e) => {
+  const dialog = new BaseDialog("My First Page")
+  dialog.cont.add("Welcome to my first page!")
+  dialog.cont.add("Mono is mining")
+  dialog.cont.image(Items.copper.uiIcon)
+
+  // [!code focus:8]
+  dialog.cont.table(null, (table) => {
+    // [!code ++:5]
+    table.image(UnitTypes.flare.uiIcon).pad(4)
+    table.image(Blocks.duo.uiIcon).pad(4)
+    table.image(Liquids.water.uiIcon).pad(4)
+    table.image(Icon.upload).pad(4)
+    table.image(Icon.cancel).pad(4)
+  })
+
+  dialog.addCloseButton()
+  dialog.show()
+})
+```
+
+现在，页面上图标间的间距就回来了。
+
+<ImageGrid cols="2" gap=40>
+    <ImageItem src="./imgs/table-1.png" caption="修改前" />
+    <ImageItem src="./imgs/table-2-pad.png" caption="修改后" />
+</ImageGrid>
+
+- 继续修改代码，让图标`水`的前面换行：
+
+```js
+Events.on(ClientLoadEvent, (e) => {
+  const dialog = new BaseDialog("My First Page")
+  dialog.cont.add("Welcome to my first page!")
+  dialog.cont.add("Mono is mining")
+  dialog.cont.image(Items.copper.uiIcon)
+
+  // [!code focus:8]
+  dialog.cont.table(null, (table) => {
+    table.image(UnitTypes.flare.uiIcon).pad(4)
+    table.image(Blocks.duo.uiIcon).pad(4)
+    table.row() // [!code ++]
+    table.image(Liquids.water.uiIcon).pad(4)
+    table.image(Icon.upload).pad(4)
+    table.image(Icon.cancel).pad(4)
+  })
+
+  dialog.addCloseButton()
+  dialog.show()
+})
+```
+
+<ImageItem src="./imgs/table-3-row.png" caption="表格换行" />
+
+- 只有图标还是有些单调，我们给表格加一些文字：
+
+```js
+Events.on(ClientLoadEvent, (e) => {
+  const dialog = new BaseDialog("My First Page")
+  dialog.cont.add("Welcome to my first page!")
+  dialog.cont.add("Mono is mining")
+  dialog.cont.image(Items.copper.uiIcon)
+
+  // [!code focus:8]
+  dialog.cont.table(null, (table) => {
+    table.add("星辉和双管炮：") // [!code ++]
+    table.image(UnitTypes.flare.uiIcon).pad(4)
+    table.image(Blocks.duo.uiIcon).pad(4)
+    table.row()
+    table.add("水和图标：") // [!code ++]
+    table.image(Liquids.water.uiIcon).pad(4)
+    table.image(Icon.upload).pad(4)
+    table.image(Icon.cancel).pad(4)
+  })
+
+  dialog.addCloseButton()
+  dialog.show()
+})
+```
+
+现在文本 `星辉和双管炮：` 和 `水和图标：` 在同一**列(Column)** 并且 **居中对齐(Center Alignment)**。图标也各自居中对齐。
+
+<ImageItem src="./imgs/table-4-text.png" caption="表格文本" />
+
+- 经过上面的探索，你会发现表格添加文本和图片的方式，和之前在页面上添加文本和图片的方式完全一致。这是因为，`dialog.cont` 其实就是一个 **表格(Table)**。
+
+- 而且你可以看到，我们通过 `dialog.cont.table(...)` 向页面添加表格，`dialog.cont`本身也是个表格，这就说明，**表格是可以嵌套的**——这是表格布局的基础。
+
+- 现在你对 **表格(Table)** 应该有了一定的理解，不过同样有些代码没有做解释：
+
+1.  为什么在添加表格的时候，第一个参数是 `null`，这是必须的吗?
+
+<GridText>
+
+这不是必须的。因为添加表格元素的函数有很多种，而它们的第一个参数类型各不相同。
+
+如果你写：
+
+```js
+dialog.cont.table((table) => {})
+```
+
+你会发现游戏会报错：<ImageItem height=200 src="./imgs/table-param-1-error.png" caption="报错" />
+
+这是因为 JS 引擎会尝试去匹配同名函数，上面的写法第一个参数类型是`Function`，引擎无法区分开 `table(Cons)` 和 `table(Drawable)` 函数。如果要写成单参数，正确的写法如下：
+
+```js
+dialog.cont.table(cons((table) => {}))
+```
+
+这种写法会显得很啰嗦，容易漏掉一对小括号，或者漏掉大括号，不太推荐。
+
+</GridText>
+
+<ImageItem height=150 src="./imgs/table-param-1.png" caption="添加表格的所有函数" />
+
+2. `table.add` 和 `table.image` 的返回值是什么，为什么调用返回值`pad`函数就能调整间距?
+   - 这将在下一章 **表格布局(Table Layout)** 深入讲解。
 
 # Cell - 表格布局
+
+> 施工中...
+
+# Button - 按钮交互世界
 
 > 施工中...
