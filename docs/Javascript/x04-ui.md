@@ -93,7 +93,7 @@ Events.on(ClientLoadEvent, (e) => {
 现在你肯定还有一些疑惑：
 
 1.  为什么我要写 `Events.on(ClientLoadEvent, (e) => {...})`，这是必须的吗？
-    - 对，这是**必须**的。不过至于为什么，我们按住不表，后续会给出解释，我们先按照已给出的代码，一步一步学习。
+    - 对，这是**必须**的。不过至于为什么，我们先按住不表，后续会给出解释，我们先按照已给出的代码，一步一步学习。
 
 ---
 
@@ -113,7 +113,7 @@ Events.on(ClientLoadEvent, (e) => {
 ```
 
 1. 调用 `add`，添加新文本
-2. 调用 `image`，并传入图片，添加**图片(Image)**
+2. 调用 `image`，并传入图片，添加**图片元素(Image)**
 
 这样，我们的页面就新增了文本和图片：
 <ImageItem src="./imgs/text-image.png" caption="新增文本和图片" />
@@ -126,7 +126,7 @@ Events.on(ClientLoadEvent, (e) => {
 
 - 当然你还可以添加自己模组的图片，这里我们先不演示，后续深入时再演示。
 
-接下来我们就引入更多图片开源：
+接下来我们就在代码里演示这些图片来源：
 
 ```js
 Events.on(ClientLoadEvent, (e) => {
@@ -222,7 +222,7 @@ Events.on(ClientLoadEvent, (e) => {
     <ImageItem src="./imgs/table-2-pad.png" caption="修改后" />
 </ImageGrid>
 
-- 继续修改代码，让图标`水`的前面换行：
+- 继续修改代码，让表格在水的图标的前面换行：
 
 ```js
 Events.on(ClientLoadEvent, (e) => {
@@ -310,7 +310,7 @@ dialog.cont.table(cons((table) => {}))
 
 <ImageItem height=150 src="./imgs/table-param-1.png" caption="添加表格的所有函数" />
 
-2. `table.add` 和 `table.image` 的返回值是什么，为什么调用返回值`pad`函数就能调整间距?
+2. `table.add` 和 `table.image` 函数的返回值是什么，为什么调用返回值`pad`函数就能调整间距?
    - 这将在下一章 **表格布局(Table Layout)** 深入讲解。
 
 # Cell - 表格布局
